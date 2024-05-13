@@ -1,5 +1,5 @@
 <h1 align="center">
-  TODO-API
+  HOTEL-API
 </h1>
 
 ---
