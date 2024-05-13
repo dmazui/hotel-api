@@ -21,6 +21,7 @@ public class Valor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "valores_sequence")
 	private Long id;
 	
+	@Column(length = 50)
 	private String descricao;
 	
 	private Long valor;

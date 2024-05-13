@@ -6,33 +6,33 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.dmazui.hotelapi.domain.models.Hospede;
-import com.dmazui.hotelapi.repositories.HospedeRepository;
+import com.dmazui.hotelapi.domain.models.Reserva;
+import com.dmazui.hotelapi.repositories.ReservaRepository;
 
 @Service
-public class HospedeService {
+public class ReservaService {
 
-	HospedeRepository repository;
+	ReservaRepository repository;
 
-	public HospedeService(HospedeRepository repository) {
+	public ReservaService(ReservaRepository repository) {
 		this.repository = repository;
 	} 
 	
-	public Hospede save(Hospede source) {
+	public Reserva save(Reserva source) {
 		return repository.save(source);
 	}
 
 
-	public Hospede findById(Long id) {
+	public Reserva findById(Long id) {
 		return repository.findById(id).orElse(null);
 	}
 
-	public List<Hospede> findAll() {
-	    Sort sort = Sort.by(Direction.ASC, "nome");
+	public List<Reserva> findAll() {
+	    Sort sort = Sort.by(Direction.DESC, "dataInicio");
 	    return repository.findAll(sort);
 	}
 
-	public Hospede update(Long id, Hospede source) {
+	public Reserva update(Long id, Reserva source) {
 		source.setId(id);
 		return repository.save(source);    
 	}
