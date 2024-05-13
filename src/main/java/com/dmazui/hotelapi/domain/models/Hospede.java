@@ -26,8 +26,10 @@ public class Hospede implements Serializable {
  
 	private String nome;
 	
+	@Column(length = 30)
 	private String documento;
 	
+	@Column(length = 15)
 	private String telefone;
 	
 }
