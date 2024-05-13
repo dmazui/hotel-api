@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
-//@EntityScan(basePackages = {"com.dmazui.todoapi.model"})
+@EntityScan(basePackages = {"com.dmazui.hotelapi.domain.models"})
 public class HotelApiApplication {
 
 	public static void main(String[] args) {
