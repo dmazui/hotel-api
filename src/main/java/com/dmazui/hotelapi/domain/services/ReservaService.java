@@ -7,17 +7,21 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.dmazui.hotelapi.domain.models.Reserva;
+import com.dmazui.hotelapi.repositories.FaturaRepository;
 import com.dmazui.hotelapi.repositories.ReservaRepository;
 
 @Service
 public class ReservaService {
 
 	ReservaRepository repository;
-
-	public ReservaService(ReservaRepository repository) {
-		this.repository = repository;
-	} 
+	FaturaRepository faturaRepository;
 	
+	public ReservaService(ReservaRepository repository, FaturaRepository faturaRepository) {
+		this.repository = repository;
+		this.faturaRepository = faturaRepository;
+	}
+
+
 	public Reserva save(Reserva source) {
 		return repository.save(source);
 	}
@@ -41,4 +45,8 @@ public class ReservaService {
 		repository.deleteById(id);
 	}
 
+	
+	private Long calculaTotal (Long idReserva) {		
+		return faturaRepository.getTotalFatura(idReserva);
+	}
 }

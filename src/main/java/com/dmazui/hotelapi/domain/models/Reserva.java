@@ -36,4 +36,5 @@ public class Reserva implements Serializable {
 	//TODO deve ser one to many 
 	private Long hospedeId;
 	
+	
 }

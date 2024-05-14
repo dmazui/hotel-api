@@ -1,5 +1,6 @@
 package com.dmazui.hotelapi.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dmazui.hotelapi.domain.enums.Situacao;
 import com.dmazui.hotelapi.domain.models.Reserva;
 import com.dmazui.hotelapi.domain.services.ReservaService;
 
@@ -29,6 +31,7 @@ public class ReservaController {
 	@PostMapping
 	public ResponseEntity<Reserva> save(@RequestBody @Valid Reserva source) throws Exception {
 		try {
+			source.setSituacao(Situacao.ABERTA);
 			return ResponseEntity.ok(service.save(source));
 		} catch (Exception e) { }
 		return ResponseEntity.badRequest().build();
@@ -57,4 +60,16 @@ public class ReservaController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
+	@PutMapping("{id}/checkin")
+	public ResponseEntity<Reserva> checkin(@PathVariable("id") Long id, @RequestBody Reserva source) throws Exception {
+		// int hourCheckin = LocalDateTime.now().getHour();
+		// if (hourCheckin < 14) 
+		// validacao de horario deve ser feita no FRONT
+		// NAO FAZ SENTIDO FAZER NO BACK
+		
+		source.setSituacao(Situacao.ATIVA);
+		return (service.findById(id) != null) ? ResponseEntity.ok(service.update(id, source)) : ResponseEntity.notFound().build();
+	}
+	
 }
