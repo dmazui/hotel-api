@@ -11,5 +11,3 @@
 - Spring Data JPA
 - SpringDoc OpenAPI 3
 - PostgreSql
-
-- [swagger]() funcional no heroku com banco PostgreSql de teste
